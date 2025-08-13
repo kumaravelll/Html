@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>User Registration Form Validation</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* full viewport height */
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  form {
+    background-color: white;
+    padding: 20px 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 320px;
+    text-align: left;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  label, input {
+    display: block;
+    width: 100%;
+  }
+  input {
+    padding: 8px;
+    margin: 8px 0 20px 0;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
+<script>
+function validateForm() {
+    var creditCard = document.forms["regForm"]["creditcard"].value;
+    var email = document.forms["regForm"]["email"].value;
+    var phone = document.forms["regForm"]["phone"].value;
+
+    var creditCardPattern = /^\d{16}$/;
+    if (!creditCardPattern.test(creditCard)) {
+        alert("Please enter a valid 16-digit credit card number.");
+        return false;
+    }
+
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    var phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false;
+    }
+
+    alert("Registration successful!");
+    return true;
+}
+</script>
+</head>
+<body>
+
+<form name="regForm" onsubmit="return validateForm()">
+    <h2>User Registration Form</h2>
+
+    <label for="creditcard">Credit Card Number:</label>
+    <input type="text" id="creditcard" name="creditcard" maxlength="16" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" maxlength="10" required />
+
+    <input type="submit" value="Register" />
+</form>
+
+</body>
+</html>
